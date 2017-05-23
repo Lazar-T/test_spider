@@ -1,18 +1,17 @@
 # This is a template for a Python scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
 
-import selenium
+from selenium import webdriver
 import scraperwiki
-import lxml.html
 
 # Read in a page
 html = scraperwiki.scrape("http://foo.com")
 
 # Find something on the page using css selectors
-root = lxml.html.fromstring(html)
-root.cssselect("div[align='left']")
+# root = lxml.html.fromstring(html)
+# root.cssselect("div[align='left']")
 
-driver = selenium.webdriver.Firefox()
+driver = webdriver.Firefox()
 driver.get('https://www.reddit.com/')
 title = driver.title
 
