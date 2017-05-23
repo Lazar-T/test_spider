@@ -4,6 +4,7 @@
 from selenium import webdriver
 import scraperwiki
 from time import sleep
+from pyvirtualdisplay import Display
 
 import platform
 print platform.platform()
@@ -11,11 +12,14 @@ print platform.platform()
 # Read in a page
 html = scraperwiki.scrape("http://foo.com")
 
+display = Display(visible=0, size=(800, 600))
+display.start()
+
 # Find something on the page using css selectors
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 
-driver = webdriver.PhantomJS()
+driver = webdriver.Chrome('./chromedriver')
 driver.get('https://www.reddit.com/')
 sleep(10)
 print 'fooobar'
