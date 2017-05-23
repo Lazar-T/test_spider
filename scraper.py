@@ -3,6 +3,7 @@
 
 from selenium import webdriver
 import scraperwiki
+from time import sleep
 
 # Read in a page
 html = scraperwiki.scrape("http://foo.com")
@@ -13,6 +14,8 @@ html = scraperwiki.scrape("http://foo.com")
 
 driver = webdriver.PhantomJS()
 driver.get('https://www.reddit.com/')
+sleep(10)
+print 'fooobar'
 title = driver.title
 
 scraperwiki.sqlite.save(unique_keys=['name'], data={"name": title, "occupation": "software developer"})
