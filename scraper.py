@@ -11,7 +11,7 @@ html = scraperwiki.scrape("http://foo.com")
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 
-driver = webdriver.Chrome('./chromedriver')
+driver = webdriver.PhantomJS()
 driver.get('https://www.reddit.com/')
 title = driver.title
 
