@@ -19,23 +19,19 @@ html = scraperwiki.scrape("http://foo.com")
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 
-with Browser("phantomjs") as browser:
-    # Optional, but make sure large enough that responsive pages don't
-    # hide elements on you...
-    browser.driver.set_window_size(1280, 1024)
-
-    # Open the page you want...
-    browser.visit("https://morph.io")
-
-    # submit the search form...
-    browser.fill("q", "parliament")
-    button = browser.find_by_css("button[type='submit']")
+with Browser() as browser:
+    # Visit URL
+    url = "http://www.google.com"
+    browser.visit(url)
+    browser.fill('q', 'splinter - python acceptance testing for web applications')
+    # Find and click the 'search' button
+    button = browser.find_by_name('btnG')
+    # Interact with elements
     button.click()
-
-    # Scrape the data you like...
-    links = browser.find_by_css(".search-results .list-group-item")
-    for link in links:
-        print link['href']
+    if browser.is_text_present('splinter.readthedocs.io'):
+        print("Yes, the official website was found!")
+    else:
+        print("No, it wasn't found... We need to improve our SEO techniques")
 
 scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "some name", "occupation": "software"})
 
