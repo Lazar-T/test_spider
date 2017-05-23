@@ -4,28 +4,40 @@
 from selenium import webdriver
 import scraperwiki
 from time import sleep
-from pyvirtualdisplay import Display
+from splinter import Browser
 
 import platform
 print platform.platform()
 
+print 'fooobar'
+
 # Read in a page
 html = scraperwiki.scrape("http://foo.com")
 
-display = Display(visible=0, size=(800, 600))
-display.start()
 
 # Find something on the page using css selectors
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 
-driver = webdriver.Chrome('./chromedriver')
-driver.get('https://www.reddit.com/')
-sleep(10)
-print 'fooobar'
-title = driver.title
+with Browser("phantomjs") as browser:
+    # Optional, but make sure large enough that responsive pages don't
+    # hide elements on you...
+    browser.driver.set_window_size(1280, 1024)
 
-scraperwiki.sqlite.save(unique_keys=['name'], data={"name": title, "occupation": "software"})
+    # Open the page you want...
+    browser.visit("https://morph.io")
+
+    # submit the search form...
+    browser.fill("q", "parliament")
+    button = browser.find_by_css("button[type='submit']")
+    button.click()
+
+    # Scrape the data you like...
+    links = browser.find_by_css(".search-results .list-group-item")
+    for link in links:
+        print link['href']
+
+scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "some name", "occupation": "software"})
 
 # An arbitrary query against the database
 scraperwiki.sql.select("* from data where 'name'='peter'")
