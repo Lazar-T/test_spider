@@ -5,6 +5,9 @@ from selenium import webdriver
 import scraperwiki
 from time import sleep
 
+import platform
+print platform.platform()
+
 # Read in a page
 html = scraperwiki.scrape("http://foo.com")
 
