@@ -18,7 +18,7 @@ sleep(10)
 print 'fooobar'
 title = driver.title
 
-scraperwiki.sqlite.save(unique_keys=['name'], data={"name": title, "occupation": "software developer"})
+scraperwiki.sqlite.save(unique_keys=['name'], data={"name": title, "occupation": "software"})
 
 # An arbitrary query against the database
 scraperwiki.sql.select("* from data where 'name'='peter'")
