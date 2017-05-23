@@ -5,6 +5,8 @@ from selenium import webdriver
 
 
 with Browser('phantomjs') as browser:
+    browser.driver.set_window_size(1280, 1024)
+
     # Visit URL
     url = "https://www.google.rs/search?q=bitcoin&tbm=nws&cad=h"
     browser.visit(url)
