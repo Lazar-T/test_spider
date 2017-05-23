@@ -19,7 +19,7 @@ html = scraperwiki.scrape("http://foo.com")
 # root = lxml.html.fromstring(html)
 # root.cssselect("div[align='left']")
 
-with Browser() as browser:
+with Browser("phantomjs") as browser:
     # Visit URL
     url = "http://www.google.com"
     browser.visit(url)
