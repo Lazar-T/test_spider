@@ -6,5 +6,4 @@
 -e git+http://github.com/openaustralia/scraperwiki-python.git@morph_defaults#egg=scraperwiki
 
 selenium==2.53.6
-PyVirtualDisplay==0.2
 splinter>=0.7.3
